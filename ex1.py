@@ -10,14 +10,17 @@ def prin():
         rgb = recog.capturar_frame()
         lista = recog.guardar_participantes('okita.jpg', 'caio.jpg')
         recog.reconhecer_rosto(lista, rgb)
+        
+def popup():
+    toplevel = Toplevel()
+    label1 = Label(toplevel, height=0, width=100)
+    label1.pack()
+    label2 = Label(toplevel, height=0, width=100)
+    label2.pack()
 
 def main():
-    w = Frame(root, height="768", width="1367", bg="red")
-    w.pack()
-    w.pack_propagate(0)
-    g = Frame(w,  height="768", width="1367", bg="blue")
-    g.pack()
-    g.pack_propagate(1)
+    w = Frame(root,height="300", width="300", bg="red")
+    w.pack(padx="300")
     button = Button(g, text="oi", command= lambda: prin())
     button.pack(padx="250", pady="350")
 
@@ -40,6 +43,7 @@ def main():
  #   root = tk.Tk()
   #  Example(root).pack(fill="both", expand=True)
    # root.mainloop()
+root.geometry("1300x700")
 main()
 mainloop()
 
