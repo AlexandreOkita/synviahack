@@ -1,8 +1,17 @@
-from tkinter import *
 import recog
 import time
+import numpy as np
+import cv2
+import tkinter as tk
+from PIL import Image, ImageTk
 
-root = Tk()
+root = tk.Tk()
+w = tk.Frame(root,height="400", width="900", bg="red")
+w.pack()
+w.pack_propagate(0) 
+lmain = tk.Label(w)
+lmain.pack()
+cap = cv2.VideoCapture(0)
 
 def prin():
     cap = recog.ligar_camera()
@@ -23,12 +32,22 @@ def popup():
     label2 = Label(toplevel, height=0, width=100)
     label2.pack()
 
-def main():
-    w = Frame(root,height="300", width="300", bg="red")
-    w.pack(padx="300")
-    button = Button(w, text="oi", command= lambda: prin())
-    button.pack(padx="50", pady="50")
+def show_frame():
+    _, frame = cap.read()
+    frame = cv2.flip(frame, 1)
+    cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+    img = Image.fromarray(cv2image)
+    imgtk = ImageTk.PhotoImage(image=img)
+    lmain.imgtk = imgtk
+    lmain.configure(image=imgtk)
+    lmain.after(10, show_frame) 
 
+def main(root):
+    f1 = tk.Frame(root, height="200",width="900", bg="white")
+    f1.pack(side="left")
+    f1.pack_propagate(0)
+    button = tk.Button(w, text="oi", command= lambda: show_frame())
+    button.pack()
 
 #class Example(tk.Frame):
     #def __init__(self, parent):
@@ -49,7 +68,7 @@ def main():
   #  Example(root).pack(fill="both", expand=True)
    # root.mainloop()
 root.geometry("1280x720")
-main()
-mainloop()
+main(root)
+root.mainloop()
 
 #python3 ex1.py
