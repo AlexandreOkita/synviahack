@@ -21,7 +21,7 @@ def popup():
 def main():
     w = Frame(root,height="300", width="300", bg="red")
     w.pack(padx="300")
-    button = Button(g, text="oi", command= lambda: prin())
+    button = Button(w, text="oi", command= lambda: prin())
     button.pack(padx="250", pady="350")
 
 
