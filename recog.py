@@ -2,7 +2,42 @@ import face_recognition
 import cv2
 import numpy as np
 
-def identificar_rosto(client, image):
+def guardar_participantes(colector, client):
+    colector_image = face_recognition.load_image_file(colector)
+    colector_face_encoding = face_recognition.face_encodings(colector_image)[0]
+
+    # Load a second sample picture and learn how to recognize it.
+    client_image = face_recognition.load_image_file(client)
+    client_face_encoding = face_recognition.face_encodings(client_image)[0]
+
+    return [colector_face_encoding, client_face_encoding]
+
+def reconhecer_rosto(known_face_encodings, rgb_small_frame):
+    known_face_names = [
+        "Coletor",
+        "Cliente"
+    ]
+    face_locations = []
+    face_encodings = []
+    face_names = []
+
+    face_locations = face_recognition.face_locations(rgb_small_frame)
+    face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
+
+    for face_encoding in face_encodings:
+        matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
+        name = "Unknown"
+        face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
+        best_match_index = np.argmin(face_distances)
+        if matches[best_match_index]:
+            name = known_face_names[best_match_index]
+
+        face_names.append(name)
+    print(face_names)
+    
+
+
+def identificar_rosto(colector, client):
     colector_image = face_recognition.load_image_file(colector)
     colector_face_encoding = face_recognition.face_encodings(colector_image)[0]
 

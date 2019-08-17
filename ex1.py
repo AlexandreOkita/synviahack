@@ -1,9 +1,11 @@
 from tkinter import *
+import recog
 
 root = Tk()
 
 def prin():
-    print("OI")
+    recog.identificar_rosto('okita.jpg', 'caio.jpg')
+
 def main():
     w = Frame(root, height="768", width="1367", bg="red")
     w.pack()
@@ -11,7 +13,7 @@ def main():
     g = Frame(w,  height="768", width="1367", bg="blue")
     g.pack()
     g.pack_propagate(1)
-    button = Button(g, text="oi", command= prin())
+    button = Button(g, text="oi", command= lambda: prin())
     button.pack(padx="250", pady="350")
 
 
