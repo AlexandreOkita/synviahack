@@ -22,7 +22,7 @@ def main():
     w = Frame(root,height="300", width="300", bg="red")
     w.pack(padx="300")
     button = Button(w, text="oi", command= lambda: prin())
-    button.pack(padx="250", pady="350")
+    button.pack(padx="50", pady="50")
 
 
 #class Example(tk.Frame):
