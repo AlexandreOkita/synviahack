@@ -33,10 +33,12 @@ def reconhecer_rosto(known_face_encodings, rgb_small_frame):
             name = known_face_names[best_match_index]
 
         face_names.append(name)
-    print(face_names)
+    return face_locations, face_names
 
-def capturar_frame():
-    cap = cv2.VideoCapture(cv2.CAP_DSHOW)
+def ligar_camera():
+    return cv2.VideoCapture(cv2.CAP_DSHOW)
+
+def capturar_frame(cap):
         # Grab a single frame of video
     ret, frame = cap.read(0)
 
@@ -44,7 +46,27 @@ def capturar_frame():
     small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
 
         # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
-    return small_frame[:, :, ::-1]
+    return small_frame[:, :, ::-1], frame
+
+def desenhar(face_locations, face_names, frame):
+    for (top, right, bottom, left), name in zip(face_locations, face_names):
+        # Scale back up face locations since the frame we detected in was scaled to 1/4 size
+        top *= 4
+        right *= 4
+        bottom *= 4
+        left *= 4
+
+            # Draw a box around the face
+        cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
+
+            # Draw a label with a name below the face
+        cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
+        font = cv2.FONT_HERSHEY_DUPLEX
+        cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+    return frame
+
+def display(frame):
+    cv2.imshow('Video', frame)
 
 
 

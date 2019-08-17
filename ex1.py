@@ -1,15 +1,20 @@
 from tkinter import *
 import recog
+import time
 
 root = Tk()
 
 def prin():
-    aux = True
-    while True:    
-        aux = not aux
-        rgb = recog.capturar_frame()
-        lista = recog.guardar_participantes('okita.jpg', 'caio.jpg')
-        recog.reconhecer_rosto(lista, rgb)
+    cap = recog.ligar_camera()
+    cont = 0
+    lista = recog.guardar_participantes('okita.jpg', 'caio.jpg')
+
+    while True: 
+        rgb = recog.capturar_frame(cap)
+        coord = recog.reconhecer_rosto(lista, rgb[0])
+        frame = recog.desenhar(coord[0], coord[1], rgb[1])
+        print('teste')
+        recog.display(frame)
         
 def popup():
     toplevel = Toplevel()
@@ -22,7 +27,7 @@ def main():
     w = Frame(root,height="300", width="300", bg="red")
     w.pack(padx="300")
     button = Button(w, text="oi", command= lambda: prin())
-    button.pack(padx="250", pady="350")
+    button.pack(padx="50", pady="50")
 
 
 #class Example(tk.Frame):
@@ -43,7 +48,7 @@ def main():
  #   root = tk.Tk()
   #  Example(root).pack(fill="both", expand=True)
    # root.mainloop()
-root.geometry("1300x700")
+root.geometry("1280x720")
 main()
 mainloop()
 
