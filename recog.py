@@ -34,7 +34,18 @@ def reconhecer_rosto(known_face_encodings, rgb_small_frame):
 
         face_names.append(name)
     print(face_names)
-    
+
+def capturar_frame():
+    cap = cv2.VideoCapture(cv2.CAP_DSHOW)
+        # Grab a single frame of video
+    ret, frame = cap.read(0)
+
+        # Resize frame of video to 1/4 size for faster face recognition processing
+    small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
+
+        # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
+    return small_frame[:, :, ::-1]
+
 
 
 def identificar_rosto(colector, client):

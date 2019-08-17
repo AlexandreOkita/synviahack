@@ -4,7 +4,12 @@ import recog
 root = Tk()
 
 def prin():
-    recog.identificar_rosto('okita.jpg', 'caio.jpg')
+    aux = True
+    while True:    
+        aux = not aux
+        rgb = recog.capturar_frame()
+        lista = recog.guardar_participantes('okita.jpg', 'caio.jpg')
+        recog.reconhecer_rosto(lista, rgb)
 
 def main():
     w = Frame(root, height="768", width="1367", bg="red")
