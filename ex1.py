@@ -86,6 +86,7 @@ def main(root):
  #   root = tk.Tk()
   #  Example(root).pack(fill="both", expand=True)
    # root.mainloop()
+root.title("IdentFace")
 root.geometry("1280x633")
 main(root)
 root.mainloop()
