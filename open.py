@@ -10,7 +10,7 @@ foto = ImageTk.PhotoImage(Image.open("fundo.jpeg"))
 
 def chamada():
     root.after(200,root.destroy())
-    call(["python3", "teste.py"])
+    call(["python3", "ex1.py"])
   
 root.geometry("1300x769")
 fr = st.Label(root,width="1300", height="769", image=foto)
