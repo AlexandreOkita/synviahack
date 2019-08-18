@@ -22,13 +22,12 @@ od = ObjectDetector.Object_Detector()
 
 def popup():
     toplevel = tk.Toplevel()
-    label1 = tk.Label(toplevel, height=0, width=100)
+    label1 = tk.Label(toplevel, height=0, bg="white", width=100)
     label1.pack()
-    label2 = tk.Label(toplevel, height=0, width=100)
+    label2 = tk.Label(toplevel, height=0, bg="white", width=100)
     label2.pack()
-    label3 = tk.Label(toplevel, image=pop)
-    label3.pack()
-
+    label3 = tk.Label(toplevel, image=pop, bg="white", height="130px")
+    label3.pack(side=tk.TOP)
 def show_frame(frame):
         img = Image.fromarray(frame)
         imgtk = ImageTk.PhotoImage(image=img)
