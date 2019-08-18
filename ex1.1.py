@@ -1,28 +1,18 @@
+import recog
+import time
 import numpy as np
 import cv2
 import tkinter as tk
-from PIL import ImageTk, Image
-from tkinter import PhotoImage
-import recog
-import ObjectDetector
-
+from PIL import Image, ImageTk
 root = tk.Tk()
-w = tk.Frame(root,height="400", width="1893", bg="red")
+w = tk.Frame(root,height="400", width="900", bg="red")
 w.pack()
 w.pack_propagate(0) 
-foto = ImageTk.PhotoImage(Image.open("dados.jpg"))
 lmain = tk.Label(w)
 lmain.pack()
 cap = recog.ligar_camera()
 lista = recog.guardar_participantes('okita.jpg', 'caio.jpg')
 
-
-def popup():
-    toplevel = tk.Toplevel()
-    label1 = tk.Label(toplevel, height=0, width=100)
-    label1.pack()
-    label2 = tk.Label(toplevel, height=0, width=100)
-    label2.pack()
 
 def show_frame(frame):
         print('teste')
@@ -32,22 +22,28 @@ def show_frame(frame):
         lmain.configure(image=imgtk)
         root.update()
 
+
 def prin():
         cont = 0
         rgb = recog.capturar_frame(cap)
         coord = recog.reconhecer_rosto(lista, rgb[0])
         frame = recog.desenhar(coord[0], coord[1], rgb[1])
-        show_frame(frame)
+        show_frame(frame)        
+def popup():
+    toplevel = Toplevel()
+    label1 = Label(toplevel, height=0, width=100)
+    label1.pack()
+    label2 = Label(toplevel, height=0, width=100)
+    label2.pack()
+
 
 def main(root):
-    f1 = tk.Frame(root, height="343",width="1893", bg="white")
+    f1 = tk.Frame(root, height="200",width="900", bg="white")
     f1.pack(side="left")
     f1.pack_propagate(0)
-    dados = tk.Button(f1, image=foto, bg="#ddd9ce", borderwidth="0")
-    dados.pack(fill=tk.BOTH)
-    dados.pack_propagate(1)
-    while 1:
-        prin()
+    while(True):
+            prin()
+
 
 #class Example(tk.Frame):
     #def __init__(self, parent):
@@ -67,8 +63,9 @@ def main(root):
  #   root = tk.Tk()
   #  Example(root).pack(fill="both", expand=True)
    # root.mainloop()
-root.geometry("1893x743")
+root.geometry("1280x720")
 main(root)
 root.mainloop()
 
-#python3 ex1.py;.
+
+#python3 ex1.py
