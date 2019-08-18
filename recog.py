@@ -69,7 +69,6 @@ def display(frame):
     cv2.imshow('Video', frame)
 
 
-
 def identificar_rosto(colector, client):
     colector_image = face_recognition.load_image_file(colector)
     colector_face_encoding = face_recognition.face_encodings(colector_image)[0]
@@ -125,6 +124,7 @@ def identificar_rosto(colector, client):
                     name = known_face_names[best_match_index]
                 else:
                     print('FRAUDE!')
+
 
                 face_names.append(name)
 

@@ -23,7 +23,22 @@ def popup():
     label3 = tk.Label(toplevel, image=pop)
     label3.pack()
 
-def show_frame(frame):
+def prin():
+        cont = 0
+        rgb = recog.capturar_frame(cap)
+        coord = recog.reconhecer_rosto(lista, rgb[0])
+        if coord[1] == "Unknown":
+                cont += cont
+                if (cont == 10):
+                        popup()
+                        cont = -1
+                        
+        elif cont != -1:
+                cont = 0
+        frame = recog.desenhar(coord[0], coord[1], rgb[1])
+        show_frame(frame)
+
+def show_frame(frame): 
         print('teste')
         img = Image.fromarray(frame)
         imgtk = ImageTk.PhotoImage(image=img)
