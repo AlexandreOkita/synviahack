@@ -7,7 +7,7 @@ import recog
 import ObjectDetector
 
 root = tk.Tk()
-w = tk.Frame(root,height="400", width="1893", bg="red")
+w = tk.Frame(root,height="400", width="900", bg="black")
 w.pack()
 w.pack_propagate(0) 
 foto = ImageTk.PhotoImage(Image.open("dados.jpg"))
@@ -40,12 +40,9 @@ def prin():
         show_frame(frame)
 
 def main(root):
-    f1 = tk.Frame(root, height="343",width="1893", bg="white")
-    f1.pack(side="left")
-    f1.pack_propagate(0)
-    dados = tk.Button(f1, image=foto, bg="#ddd9ce", borderwidth="0")
-    dados.pack(fill=tk.BOTH)
-    dados.pack_propagate(1)
+    dados = tk.Label(root, image=foto, bg="#E6E8FA", height="343")
+    dados.pack(fil=tk.Y)
+    dados.pack_propagate(0)
     while 1:
         prin()
 
@@ -67,7 +64,7 @@ def main(root):
  #   root = tk.Tk()
   #  Example(root).pack(fill="both", expand=True)
    # root.mainloop()
-root.geometry("1893x743")
+root.geometry("900x638")
 main(root)
 root.mainloop()
 
