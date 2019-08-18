@@ -9,6 +9,7 @@ w = tk.Frame(root,height="400", width="900", bg="black")
 w.pack()
 w.pack_propagate(0) 
 foto = ImageTk.PhotoImage(Image.open("dados.jpg"))
+pop = ImageTk.PhotoImage(Image.open("popup.jpg"))
 lmain = tk.Label(w)
 lmain.pack()
 
@@ -19,6 +20,8 @@ def popup():
     label1.pack()
     label2 = tk.Label(toplevel, height=0, width=100)
     label2.pack()
+    label3 = tk.Label(toplevel, image=pop)
+    label3.pack()
 
 def show_frame(frame):
         print('teste')
@@ -39,6 +42,7 @@ def main(root):
     dados = tk.Label(root, image=foto, bg="#E6E8FA", height="343")
     dados.pack(fil=tk.Y)
     dados.pack_propagate(0)
+    popup();
 
 #class Example(tk.Frame):
     #def __init__(self, parent):
